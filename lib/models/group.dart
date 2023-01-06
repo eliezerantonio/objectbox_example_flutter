@@ -2,6 +2,7 @@ import 'package:objectbox/objectbox.dart';
 
 import 'task.dart';
 
+@Entity()
 class Group {
   int id = 0;
   String name;
@@ -10,15 +11,16 @@ class Group {
   @Backlink()
   final tasks = ToMany<Task>();
 
-  Group({required this.name, required this.color});
+  Group({
+    required this.name,
+    required this.color,
+  });
 
-  String taskDescription() {
-    final taskCompleted = tasks.where((task) => task.completed).length;
-
+  String tasksDescription() {
+    final tasksCompleted = tasks.where((task) => task.completed).length;
     if (tasks.isEmpty) {
       return '';
     }
-
-    return '$taskCompleted of ${tasks.length}';
+    return '$tasksCompleted of ${tasks.length}';
   }
 }

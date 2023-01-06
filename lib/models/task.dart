@@ -10,5 +10,7 @@ class Task {
 
   final group = ToOne<Group>();
 
-  Task({required this.description});
+  Task({
+    required this.description,
+  });
 }
